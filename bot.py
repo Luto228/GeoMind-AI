@@ -1,8 +1,5 @@
 import asyncio
-import sqlite3
 import aiohttp
-
-from fastapi import FastAPI
 
 from config import TOKEN
 
