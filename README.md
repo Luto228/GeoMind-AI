@@ -14,7 +14,7 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Luto228/KeyKeep-Bot.git
+   git clone https://github.com/Luto228/GeoMind-AI.git
    ```
 2. **Install dependencies:**
    ```bash
