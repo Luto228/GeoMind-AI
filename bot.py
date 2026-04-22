@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 
 from config import TOKEN
+from config import WeatherToken
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command, CommandStart
@@ -32,7 +33,12 @@ async def InfoCountry(message: Message):
                     name = f"{info['name']['common']} {info['flag']}"
                     population = info['population']
                     capital = info['capital'][0]
-                    await message.answer(f'everything is found! \nName: {name}, \npopulation: {population}, \ncapital: {capital}')
+                    weather = f"https://api.openweathermap.org/data/2.5/weather?q={info['capital'][0]}&appid={WeatherToken}&units=metric"
+                    async with session.get(weather) as weather_response:
+                        weather_json = await weather_response.json()
+                        temperature = weather_json['main']['temp']
+                        weather_desc = weather_json['weather'][0]['description']
+                    await message.answer(f'everything is found! \nName: {name}, \npopulation: {population}, \ncapital: {capital}, \ntemperature(capital): {temperature}°C,\nweather(capital): {weather_desc}')
                 elif response.status == 404:
                     await message.answer(f'I couldn\'t find country!')
 
