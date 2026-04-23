@@ -32,7 +32,8 @@ async def InfoCountry(message: Message):
                     info = data[0]
                     name = f"{info['name']['common']} {info['flag']}"
                     population = info['population']
-                    capital = info['capital'][0]
+                    cap_list = info.get('capital',['Unknown'])
+                    capital = cap_list[0]
                     weather = f"https://api.openweathermap.org/data/2.5/weather?q={info['capital'][0]}&appid={WeatherToken}&units=metric"
                     async with session.get(weather) as weather_response:
                         weather_json = await weather_response.json()
