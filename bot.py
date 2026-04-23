@@ -24,7 +24,7 @@ async def InfoCountry(message: Message):
     else:
         await message.answer(f'i use all my 3000IQ to find...')
         country = messageSize[1]
-        url = f"https://restcountries.com/v3.1/name/{country}"
+        url = f"https://restcountries.com/v3.1/name/{country}?fullText=true"
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as response:
                 if response.status == 200:
